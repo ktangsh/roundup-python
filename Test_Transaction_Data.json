@@ -1,0 +1,163 @@
+[
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1234",
+    "transactionDate": "1/6/20",
+    "Type": "Credit",
+    "transactionAmount": 5.55,
+    "merchantName": "COLD STORAGE-EASTWOOD SINGAPORE SG"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1235",
+    "transactionDate": "2/6/20",
+    "Type": "Debit",
+    "transactionAmount": 83.84,
+    "merchantName": "BILLED FINANCE CHARGES"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1236",
+    "transactionDate": "3/6/20",
+    "Type": "Credit",
+    "transactionAmount": 22.05,
+    "merchantName": "LAZADA"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1237",
+    "transactionDate": "4/6/20",
+    "Type": "Debit",
+    "transactionAmount": 37.14,
+    "merchantName": "GRABFOOD"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1238",
+    "transactionDate": "5/6/20",
+    "Type": "Credit",
+    "transactionAmount": 31.32,
+    "merchantName": "TAKASHIMAYA"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1239",
+    "transactionDate": "6/6/20",
+    "Type": "Debit",
+    "transactionAmount": 51.54,
+    "merchantName": "ION ORCHARD WATSONS"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1240",
+    "transactionDate": "7/6/20",
+    "Type": "Credit",
+    "transactionAmount": 95.42,
+    "merchantName": "BEST DENKI"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1241",
+    "transactionDate": "8/6/20",
+    "Type": "Debit",
+    "transactionAmount": 82.65,
+    "merchantName": "HARVEY NORMAN"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1242",
+    "transactionDate": "9/6/20",
+    "Type": "Credit",
+    "transactionAmount": 39.95,
+    "merchantName": "SHOPPEE"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1243",
+    "transactionDate": "10/6/20",
+    "Type": "Debit",
+    "transactionAmount": 12.9,
+    "merchantName": "NTUC FAIRPRICE"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1244",
+    "transactionDate": "11/6/20",
+    "Type": "Debit",
+    "transactionAmount": 31.52,
+    "merchantName": "DOLCE AND GABANNA"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1245",
+    "transactionDate": "12/6/20",
+    "Type": "Debit",
+    "transactionAmount": 23.66,
+    "merchantName": "STARBUCKS"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1246",
+    "transactionDate": "13/6/20",
+    "Type": "Credit",
+    "transactionAmount": 100.38,
+    "merchantName": "SP SERVICES"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1247",
+    "transactionDate": "14/6/20",
+    "Type": "Debit",
+    "transactionAmount": 97.21,
+    "merchantName": "M1"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1248",
+    "transactionDate": "15/6/20",
+    "Type": "Debit",
+    "transactionAmount": 2.75,
+    "merchantName": "TAKASHIMAYA"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1249",
+    "transactionDate": "16/6/20",
+    "Type": "Credit",
+    "transactionAmount": 28.96,
+    "merchantName": "ION ORCHARD WATSONS"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1250",
+    "transactionDate": "17/6/20",
+    "Type": "Debit",
+    "transactionAmount": 66.63,
+    "merchantName": "BEST DENKI"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1251",
+    "transactionDate": "18/6/20",
+    "Type": "Debit",
+    "transactionAmount": 35.6,
+    "merchantName": "HARVEY NORMAN"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1252",
+    "transactionDate": "19/6/20",
+    "Type": "Credit",
+    "transactionAmount": 97.46,
+    "merchantName": "SHOPPEE"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1253",
+    "transactionDate": "20/6/20",
+    "Type": "Debit",
+    "transactionAmount": 61.11,
+    "merchantName": "NTUC FAIRPRICE"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1254",
+    "transactionDate": "21/6/20",
+    "Type": "Debit",
+    "transactionAmount": 25.62,
+    "merchantName": "COLD STORAGE-EASTWOOD SINGAPORE SG"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1255",
+    "transactionDate": "22/6/20",
+    "Type": "Credit",
+    "transactionAmount": 95.29,
+    "merchantName": "BILLED FINANCE CHARGES"
+  },
+  {
+    "displayAccountNumber": "XXXXXXXXXXXX1256",
+    "transactionDate": "23/6/20",
+    "Type": "Credit",
+    "transactionAmount": 27.63,
+    "merchantName": "LAZADA"
+  }
+]

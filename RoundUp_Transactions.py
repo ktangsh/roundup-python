@@ -1,23 +1,12 @@
 import math
 import pandas as pd
 
-print('Key in your transactions: ')
+df = pd.read_json('Test_Transaction_Data.json')
 # inputs here are the transaction amounts from GET request JSON file from 'Retrieve Banking Transactions' API.
 
-df = pd.read_json('/Users/clee/Desktop/Transaction_Data_Test.json')
-print(df)
-
 transaction_amt = df['transactionAmount'].astype(float)
+print('These are your transactions to be rounded up: ')
 print(transaction_amt)
-
-# try:
-#     transaction_list = []
-#     while True:
-#         transaction_list.append(float(input()))
-    # if the input is not an integer nor float, print the list
-# except:
-print('These are your transactions to be rounded up: ', transaction_amt)
-
 
 def roundup_transactions(transaction_list):
     roundup_multiple = float(input("User Round Up Multiple = "))
@@ -28,3 +17,5 @@ def roundup_transactions(transaction_list):
 
 roundup_transactions(transaction_amt)
 print ('These are the rounded up transactions ', transaction_amt)
+
+
