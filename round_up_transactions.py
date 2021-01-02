@@ -21,6 +21,6 @@ def get_roundup_diff(transaction_list):
     return diff_list
 
 
-round_up_list = get_roundup_diff(transaction_amt)
-print('These are the rounded up transactions:')
+round_up_list = ['%.2f' % item for item in get_roundup_diff(transaction_amt)]
+print('These are the round up amounts:')
 print(round_up_list)
