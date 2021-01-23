@@ -3,9 +3,9 @@
 # 2. Create transactions with all 5 user_ids. (DONE)
 # 3. Pass transactions to code - extract merchant, date, amount, and based on user id, the auto_roundup_multiple (DONE)
 # 4. Compute roundup_difference for each transaction (DONE)
-# 5. For each user_id, sum the roundup_difference to get the user_pool
+# 5. For each user_id, sum the roundup_difference to get the user_pool (DONE)
 # 6. Post date, merchant, amount, auto_roundup_multiple, roundup_difference to user_transaction table (DONE)
-# 7. Post user_pool to user_account
+# 7. Post user_pool to user_account (DONE)
 
 import psycopg2
 import pandas as pd
@@ -40,6 +40,7 @@ print("These are the transactions and the round up differences.")
 
 print(transaction_data)
 
+
 # Pushing roundup_differences into user_transaction table in postgres
 rows = zip(transaction_data.transaction_id, transaction_data.roundup_difference)
 cur.execute("""CREATE TEMP TABLE codelist (transaction_id INTEGER, roundup_difference FLOAT) ON COMMIT DROP""")
@@ -50,6 +51,22 @@ cur.execute("""
         SET roundup_difference = codelist.roundup_difference
         FROM codelist
         WHERE codelist.transaction_id = user_transaction.transaction_id;
+        """)
+
+# calculate user_pool based on user id
+user_pool = (transaction_data.groupby('user_id')['roundup_difference'].sum().reset_index())
+print(user_pool)
+
+# Pushing user_pool into user_account table in postgres
+rows = zip(user_pool.user_id, user_pool.roundup_difference)
+cur.execute("""CREATE TEMP TABLE codelist1 (user_id INTEGER, roundup_difference FLOAT) ON COMMIT DROP""")
+cur.executemany("""INSERT INTO codelist1 (user_id, roundup_difference) VALUES (%s, %s)""",rows)
+
+cur.execute("""
+        UPDATE user_account
+        SET user_pool = codelist1.roundup_difference
+        FROM codelist1
+        WHERE codelist1.user_id = user_account.user_id;
         """)
 
 conn.commit()
