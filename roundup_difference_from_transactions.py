@@ -2,8 +2,8 @@ import psycopg2
 import pandas as pd
 import numpy as np
 
-# pd.set_option('display.max_columns', None)
-# pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
 
 conn = psycopg2.connect(database="RoundUp", user="postgres", password="roundup", host="127.0.0.1", port="5432")
 
@@ -34,14 +34,14 @@ print("These are the transactions and the round up differences.")
 
 print(transaction_data)
 
-# Pushing roundup_differences into user_transaction table in postgres
-rows = zip(transaction_data.transaction_id, transaction_data.roundup_difference)
-cur.execute("""CREATE TEMP TABLE codelist (transaction_id INTEGER, roundup_difference FLOAT) ON COMMIT DROP""")
-cur.executemany("""INSERT INTO codelist (transaction_id, roundup_difference) VALUES (%s, %s)""",rows)
+# Pushing user_id, roundup_multiple, roundup_differences into user_transaction table in postgres
+rows = zip(transaction_data.transaction_id, transaction_data.user_id, transaction_data.auto_roundup_multiple, transaction_data.roundup_difference)
+cur.execute("""CREATE TEMP TABLE codelist (transaction_id INTEGER, user_id INTEGER, roundup_multiple INTEGER, roundup_difference FLOAT) ON COMMIT DROP""")
+cur.executemany("""INSERT INTO codelist (transaction_id, user_id, roundup_multiple, roundup_difference) VALUES (%s, %s, %s, %s)""",rows)
 
 cur.execute("""
         UPDATE card_transactions
-        SET roundup_difference = codelist.roundup_difference
+        SET roundup_difference = codelist.roundup_difference, user_id = codelist.user_id, roundup_multiple = codelist.roundup_multiple
         FROM codelist
         WHERE codelist.transaction_id = card_transactions.transaction_id;
         """)
