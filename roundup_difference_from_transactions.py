@@ -1,18 +1,9 @@
-# Steps:
-# 1. Create 5 users with auto_roundup_multiples. (DONE)
-# 2. Create transactions with all 5 user_ids. (DONE)
-# 3. Pass transactions to code - extract merchant, date, amount, and based on user id, the auto_roundup_multiple (DONE)
-# 4. Compute roundup_difference for each transaction (DONE)
-# 5. For each user_id, sum the roundup_difference to get the user_pool (DONE)
-# 6. Post date, merchant, amount, auto_roundup_multiple, roundup_difference to user_transaction table (DONE)
-# 7. Post user_pool to user_account (DONE) --> not necessary. Will be calculated on the fly whenever user has new transactions.
-
 import psycopg2
 import pandas as pd
 import numpy as np
 
-pd.set_option('display.max_columns', None)
-pd.set_option('display.max_rows', None)
+# pd.set_option('display.max_columns', None)
+# pd.set_option('display.max_rows', None)
 
 conn = psycopg2.connect(database="RoundUp", user="postgres", password="roundup", host="127.0.0.1", port="5432")
 
@@ -25,12 +16,15 @@ def create_pandas_table(sql_query, database = conn):
     return table
 
 sql_retrieve_transaction_data = "select card_transactions.transaction_id, " \
-                                "card_transactions.user_id, " \
-                                "user_account.auto_roundup_multiple, " \
+                                "card_transactions.card_number, " \
                                 "card_transactions.merchant_name, " \
                                 "card_transactions.date_of_transaction, " \
-                                "card_transactions.amount_transacted " \
-                                "from card_transactions inner join user_account on card_transactions.user_id = user_account.user_id"
+                                "card_transactions.amount_transacted," \
+                                "card.user_id, " \
+                                "user_account.auto_roundup_multiple " \
+                                "from card_transactions " \
+                                "inner join card ON card.card_number = card_transactions.card_number " \
+                                "inner join user_account on user_account.user_id = card.user_id" \
 
 transaction_data = create_pandas_table(sql_retrieve_transaction_data)
 
@@ -56,19 +50,6 @@ cur.execute("""
 user_pool = (transaction_data.groupby('user_id')['roundup_difference'].sum().reset_index())
 print(user_pool)  #user_pool will be calculated on the fly, and generated whenever user opens app
 
-
-
-# Pushing user_pool into user_account table in postgres --> not necessary. Will be calculated on the fly whenever user has new transactions.
-# rows = zip(user_pool.user_id, user_pool.roundup_difference)
-# cur.execute("""CREATE TEMP TABLE codelist1 (user_id INTEGER, roundup_difference FLOAT) ON COMMIT DROP""")
-# cur.executemany("""INSERT INTO codelist1 (user_id, roundup_difference) VALUES (%s, %s)""",rows)
-#
-# cur.execute("""
-#         UPDATE user_account
-#         SET user_pool = codelist1.roundup_difference
-#         FROM codelist1
-#         WHERE codelist1.user_id = user_account.user_id;
-#         """)
 
 conn.commit()
 cur.close()
