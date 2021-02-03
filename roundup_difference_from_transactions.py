@@ -15,6 +15,8 @@ def create_pandas_table(sql_query, database = conn):
     table = pd.read_sql_query(sql_query, database)
     return table
 
+# Retrieve transaction data from GET Request, and append user_id (from card_number) and roundup_multiple if auto_roundup_multiple >0.
+
 sql_retrieve_transaction_data = "select card_transactions.transaction_id, " \
                                 "card_transactions.card_number, " \
                                 "card_transactions.merchant_name, " \
@@ -26,7 +28,13 @@ sql_retrieve_transaction_data = "select card_transactions.transaction_id, " \
                                 "inner join card ON card.card_number = card_transactions.card_number " \
                                 "inner join user_account on user_account.user_id = card.user_id" \
 
+
 transaction_data = create_pandas_table(sql_retrieve_transaction_data)
+
+# transaction_data.loc[transaction_data['user_account.auto_roundup_multiple'] = 0, 'roundup_multiple'] = int(input("Select 1, 3, or 5 as your manual RoundUp Multiple: "))
+# transaction_data.loc[transaction_data['user_account.auto_roundup_multiple'] = 0, 'roundup_multiple'] = int('auto_roundup_multiple')
+
+#IF statement for manual roundup_multiple to be inserted here.
 
 transaction_data['roundup_difference'] = (((transaction_data['amount_transacted'] / transaction_data['auto_roundup_multiple']).apply(np.ceil)) * transaction_data['auto_roundup_multiple']) - transaction_data['amount_transacted']
 
@@ -41,7 +49,7 @@ cur.executemany("""INSERT INTO codelist (transaction_id, user_id, roundup_multip
 
 cur.execute("""
         UPDATE card_transactions
-        SET roundup_difference = codelist.roundup_difference, user_id = codelist.user_id, roundup_multiple = codelist.roundup_multiple
+        SET roundup_difference = codelist.roundup_difference, user_id = codelist.user_id, auto_roundup_multiple = codelist.roundup_multiple
         FROM codelist
         WHERE codelist.transaction_id = card_transactions.transaction_id;
         """)
