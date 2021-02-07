@@ -5,7 +5,7 @@ import numpy as np
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
-conn = psycopg2.connect(database="RoundUp", user="postgres", password="roundup", host="127.0.0.1", port="5432")
+conn = psycopg2.connect(database="roundup_sg", user="roundup", password="Roundup2020!", host="roundup-postgres.cwa6gmrtdm6r.ap-southeast-1.rds.amazonaws.com", port="5432")
 
 print("Database opened successfully")
 
@@ -44,6 +44,7 @@ print(df_merge)
 df_merge['user_pool'] = df_merge.apply(lambda row: row.one_time_deposit + row.recurring_deposit - row.withdrawal + row.user_pool, axis=1)
 user_pool = (df_merge.groupby('user_id')['user_pool'].sum().reset_index())
 print(user_pool)
+
 
 
 conn.commit()

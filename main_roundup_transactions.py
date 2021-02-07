@@ -5,7 +5,7 @@ import numpy as np
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
-conn = psycopg2.connect(database="RoundUp", user="postgres", password="roundup", host="127.0.0.1", port="5432")
+conn = psycopg2.connect(database="roundup_sg", user="roundup", password="Roundup2020!", host="roundup-postgres.cwa6gmrtdm6r.ap-southeast-1.rds.amazonaws.com", port="5432")
 
 print("Database opened successfully")
 
@@ -32,25 +32,24 @@ sql_retrieve_df = "select card_transactions.transaction_id, " \
 
 df = create_pandas_table(sql_retrieve_df)
 
-df.loc[df['auto_roundup_multiple'] < 1, 'manual_roundup_multiple'] = (input("Key in either 1, 3, or 5 for the manual roundup multiple: "))
-
+print("\nThese are all the transactions\n")
 print(df)
+
+df.loc[df['auto_roundup_multiple'] < 1, 'manual_roundup_multiple'] = (input("\nKey in either 1, 3, or 5 for the manual roundup multiple: \n"))
 
 df['roundup_difference'] = (((df['amount_transacted'] / df['auto_roundup_multiple']).apply(np.ceil)) * df['auto_roundup_multiple']) - df['amount_transacted']
 
 # Converting NaN values from auto_roundup_multiple = 0 from NaN datatype to float datatype
 df.replace(np.NaN, 0, inplace=True)
-
 df['manual_roundup_multiple'] = df['manual_roundup_multiple'].astype(str).astype(int)
 
-print(df.dtypes)
-
+# Calculating roundup_difference for transactions with manual_roundup_multiple
 df.loc[df['roundup_difference'] <= 0, 'roundup_difference'] = (((df['amount_transacted'] / df[
         'manual_roundup_multiple']).apply(np.ceil)) * df['manual_roundup_multiple']) - df[
                                                  'amount_transacted']
 
-print("These are the transactions and the round up differences.")
-
+# Printing all transactions and their roundup_differences
+print("\nThese are the transactions and the round up differences.\n")
 print(df)
 
 # Pushing user_id, roundup_multiple, roundup_differences into user_transaction table in postgres
