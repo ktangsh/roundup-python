@@ -20,7 +20,7 @@ def create_pandas_table(sql_query, database = conn):
 sql_retrieve_df = "select * from other_transactions " \
 
 df = create_pandas_table(sql_retrieve_df)
-df = df.groupby(['user_id']).sum().reset_index()
+# df = df.groupby(['user_id']).sum().reset_index()
 
 print(df)
 
@@ -37,13 +37,15 @@ df_user_pool['user_pool'] = df_user_pool['user_pool'].astype(str).astype(float)
 print(df_user_pool)
 
 # Exploring merging test_user_pool to other_transactions dataframe
+#
+# df_merge = pd.merge(df, df_user_pool, left_on='user_id', right_on='user_id1', how='left').drop('user_id1', axis=1)
+# print(df_merge)
+#
+# df_merge['user_pool'] = df_merge.apply(lambda row: row.one_time_deposit + row.recurring_deposit - row.withdrawal + row.user_pool, axis=1)
+# user_pool = (df_merge.groupby('user_id')['user_pool'].sum().reset_index())
+# print(user_pool)
 
-df_merge = pd.merge(df, df_user_pool, left_on='user_id', right_on='user_id1', how='left').drop('user_id1', axis=1)
-print(df_merge)
 
-df_merge['user_pool'] = df_merge.apply(lambda row: row.one_time_deposit + row.recurring_deposit - row.withdrawal + row.user_pool, axis=1)
-user_pool = (df_merge.groupby('user_id')['user_pool'].sum().reset_index())
-print(user_pool)
 
 
 
