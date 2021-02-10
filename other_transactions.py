@@ -27,7 +27,7 @@ print(df)
 
 # test user_pool data
 test_user_pool = {'user_id1': ['1','2','3','4','5'],
-                  'user_pool': ['1500','2250','1270','500','2600']}
+                  'user_pool': ['1500','2250','1270','3500','2600']}
 
 df_user_pool = pd.DataFrame(test_user_pool, columns = ['user_id1', 'user_pool'])
 
@@ -36,18 +36,22 @@ df_user_pool['user_pool'] = df_user_pool['user_pool'].astype(str).astype(float)
 
 print(df_user_pool)
 
-# Exploring merging test_user_pool to other_transactions dataframe
-#
-# df_merge = pd.merge(df, df_user_pool, left_on='user_id', right_on='user_id1', how='left').drop('user_id1', axis=1)
-# print(df_merge)
-#
-# df_merge['user_pool'] = df_merge.apply(lambda row: row.one_time_deposit + row.recurring_deposit - row.withdrawal + row.user_pool, axis=1)
+df.loc[df['transaction_type'] != 'Withdrawal', 'action'] = df['amount_transacted']
+df.loc[df['transaction_type'] == 'Withdrawal', 'action'] = df['amount_transacted']*-1
+
+print(df[['user_id','amount_transacted','action']])
+
+df_user_pool_action = (df.groupby('user_id')['action'].sum().reset_index())
+
+df_action = pd.merge(df_user_pool, df_user_pool_action, left_on='user_id1', right_on='user_id', how='left').drop('user_id', axis=1)
+
+df_action['user_pool_final'] = df_action.apply(lambda row: row.user_pool + row.action, axis=1)
+
+print(df_action)
+
+# df_merge['df_user_pool'] = df_merge.apply(lambda row: row.one_time_deposit + row.recurring_deposit - row.withdrawal + row.user_pool, axis=1)
 # user_pool = (df_merge.groupby('user_id')['user_pool'].sum().reset_index())
 # print(user_pool)
-
-
-
-
 
 conn.commit()
 cur.close()
