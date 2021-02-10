@@ -49,10 +49,6 @@ df_action['user_pool_final'] = df_action.apply(lambda row: row.user_pool + row.a
 
 print(df_action)
 
-# df_merge['df_user_pool'] = df_merge.apply(lambda row: row.one_time_deposit + row.recurring_deposit - row.withdrawal + row.user_pool, axis=1)
-# user_pool = (df_merge.groupby('user_id')['user_pool'].sum().reset_index())
-# print(user_pool)
-
 conn.commit()
 cur.close()
 conn.close()
