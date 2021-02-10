@@ -66,7 +66,9 @@ cur.execute("""
 
 # calculate user_pool based on user id
 user_pool = (df.groupby('user_id')['roundup_difference'].sum().reset_index())
-print(user_pool)  #user_pool will be calculated on the fly, and generated whenever user opens app
+user_pool = user_pool.rename({'roundup_difference': 'user_pool'}, axis = 1)
+
+print(user_pool) #user_pool will be calculated on the fly, and generated whenever user opens app
 
 
 conn.commit()

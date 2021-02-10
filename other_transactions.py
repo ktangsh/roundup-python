@@ -45,9 +45,11 @@ df_user_pool_action = (df.groupby('user_id')['action'].sum().reset_index())
 
 df_action = pd.merge(df_user_pool, df_user_pool_action, left_on='user_id1', right_on='user_id', how='left').drop('user_id', axis=1)
 
-df_action['user_pool_final'] = df_action.apply(lambda row: row.user_pool + row.action, axis=1)
+df_action['user_pool'] = df_action.apply(lambda row: row.user_pool + row.action, axis=1)
 
-print(df_action)
+df_action = df_action.rename({'user_id1': 'user_id'}, axis=1)
+
+print(df_action [['user_id','user_pool']])
 
 conn.commit()
 cur.close()
