@@ -1,0 +1,37 @@
+{
+    "creditCard": {
+        "nameOnCard": "Rayas Roy",
+        "cardFace": "01",
+        "creditLimitDetl": {
+            "temporaryCreditLimitDetl": {
+                "temporaryCreditLimit": {
+                    "amount": 0,
+                    "currency": "SGD"
+                }
+            },
+            "remainingLimit": {
+                "amount": 0,
+                "currency": "SGD"
+            },
+            "permanentCreditLimit": {
+                "amount": 0,
+                "currency": "SGD"
+            }
+        },
+        "id": "9d02e33b930c4de793b2b40ffd49c1d9",
+        "issueDate": "2020-08-05",
+        "cardNumber": "4556220200620635",
+        "cardExpiryDate": "2032-08-30",
+        "cardStatus": "N",
+        "isPrimaryCard": false,
+        "blockDetl": {
+            "blockStatuses": [
+                ""
+            ]
+        },
+        "overseasActivationDetl": {
+            "endDate": "2999-12-31",
+            "startDate": "2029-01-30"
+        }
+    }
+}

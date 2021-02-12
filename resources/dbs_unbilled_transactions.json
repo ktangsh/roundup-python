@@ -1,0 +1,59 @@
+ {
+    "recordControl": {
+        "matchedRecordCount": "3",
+        "sentRecordCount": "3"
+    },
+    "unbilledTransactionDetl": [
+        {
+            "accountId": "b22e4219a0b44367ab2d227236146510",
+            "authorizationCode": "",
+            "cardId": "b22e4219a0b44367ab2d227236146510",
+            "merchantCategory": "00000",
+            "merchantId": "000000000",
+            "planId": "10002",
+            "postingDate": "2020-09-22",
+            "transactionAmount": {
+                "amount": 3.24,
+                "currency": "SGD"
+            },
+            "transactionCode": "0002",
+            "transactionDate": "2020-09-22",
+            "transactionDescription": "SALES DRAFT - FOREIGN",
+            "transactionType": "D"
+        },
+        {
+            "accountId": "b22e4219a0b44367ab2d227236146510",
+            "authorizationCode": "",
+            "cardId": "b22e4219a0b44367ab2d227236146510",
+            "merchantCategory": "00000",
+            "merchantId": "000000000",
+            "planId": "10002",
+            "postingDate": "2020-09-22",
+            "transactionAmount": {
+                "amount": 3.23,
+                "currency": "SGD"
+            },
+            "transactionCode": "0002",
+            "transactionDate": "2020-09-22",
+            "transactionDescription": "SALES DRAFT - FOREIGN",
+            "transactionType": "D"
+        },
+        {
+            "accountId": "b22e4219a0b44367ab2d227236146510",
+            "authorizationCode": "",
+            "cardId": "b22e4219a0b44367ab2d227236146510",
+            "merchantCategory": "00000",
+            "merchantId": "000000000",
+            "planId": "10002",
+            "postingDate": "2020-09-22",
+            "transactionAmount": {
+                "amount": 3.22,
+                "currency": "SGD"
+            },
+            "transactionCode": "0002",
+            "transactionDate": "2020-09-22",
+            "transactionDescription": "SALES DRAFT - FOREIGN",
+            "transactionType": "D"
+        }
+    ]
+}

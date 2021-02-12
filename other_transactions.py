@@ -1,56 +1,46 @@
-import psycopg2
 import pandas as pd
-import numpy as np
 
-pd.set_option('display.max_columns', None)
-pd.set_option('display.max_rows', None)
-
-conn = psycopg2.connect(database="roundup_sg", user="roundup", password="Roundup2020!", host="roundup-postgres.cwa6gmrtdm6r.ap-southeast-1.rds.amazonaws.com", port="5432")
-
-print("Database opened successfully")
-
-cur = conn.cursor()
-
-def create_pandas_table(sql_query, database = conn):
-    table = pd.read_sql_query(sql_query, database)
-    return table
-
-# Retrieve transaction data from app on other_transactions.
-
-sql_retrieve_df = "select * from other_transactions " \
-
-df = create_pandas_table(sql_retrieve_df)
-# df = df.groupby(['user_id']).sum().reset_index()
-
-print(df)
+from roundup.model.other_txn import OtherTxn
+from roundup.utility.database_connect import create_pandas_table, intialise_connection
 
 
-# test user_pool data
-test_user_pool = {'user_id1': ['1','2','3','4','5'],
-                  'user_pool': ['1500','2250','1270','3500','2600']}
+class OtherTransactions:
 
-df_user_pool = pd.DataFrame(test_user_pool, columns = ['user_id1', 'user_pool'])
+    def get_test_user_pool_data(self):
+        test_user_pool = {
+            'user_id1': [1, 2, 3, 4, 5],
+            'user_pool': [1500.0, 2250.0, 1270.0, 3500.0, 2600.0]
+        }
+        return pd.DataFrame(test_user_pool, columns=['user_id1', 'user_pool'])
 
-df_user_pool['user_id1'] = df_user_pool['user_id1'].astype(str).astype(int)
-df_user_pool['user_pool'] = df_user_pool['user_pool'].astype(str).astype(float)
+    def insert_action_column_based_on_txn_type(self, df):
+        df.loc[df[OtherTxn.TRANSACTION_TYPE] != 'Withdrawal', 'action'] = df[
+            OtherTxn.AMOUNT_TRANSACTED]
+        df.loc[df[OtherTxn.TRANSACTION_TYPE] == 'Withdrawal', 'action'] = df[OtherTxn.AMOUNT_TRANSACTED] * -1
+        print(df[[OtherTxn.USER_ID, OtherTxn.AMOUNT_TRANSACTED, 'action']])
 
-print(df_user_pool)
+    def add_pool_amount_to_user_pool(self, df_test_user_pool, df):
+        df_user_pool_action = (df.groupby(OtherTxn.USER_ID)['action'].sum().reset_index())
+        df_action = pd.merge(df_test_user_pool, df_user_pool_action, left_on='user_id1',
+                             right_on=OtherTxn.USER_ID,
+                             how='left').drop(
+            OtherTxn.USER_ID, axis=1)
+        df_action['user_pool'] = df_action.apply(lambda row: row.user_pool + row.action, axis=1)
+        df_action = df_action.rename({'user_id1': OtherTxn.USER_ID}, axis=1)
+        print(df_action[[OtherTxn.USER_ID, 'user_pool']])
 
-df.loc[df['transaction_type'] != 'Withdrawal', 'action'] = df['amount_transacted']
-df.loc[df['transaction_type'] == 'Withdrawal', 'action'] = df['amount_transacted']*-1
+    def get_other_transactions(self):
+        conn = intialise_connection()
+        with conn, conn.cursor() as cur:  # start a transaction and create a cursor
+            # Retrieve transaction data from app on other_transactions table
+            global df_other_txn
+            sql_retrieve_df = "select * from other_transactions"
+            df_other_txn = create_pandas_table(sql_retrieve_df, conn)
+            print(df_other_txn)
+        conn.close()
 
-print(df[['user_id','amount_transacted','action']])
+        df_user_pool = self.get_test_user_pool_data()
+        print(df_user_pool)
 
-df_user_pool_action = (df.groupby('user_id')['action'].sum().reset_index())
-
-df_action = pd.merge(df_user_pool, df_user_pool_action, left_on='user_id1', right_on='user_id', how='left').drop('user_id', axis=1)
-
-df_action['user_pool'] = df_action.apply(lambda row: row.user_pool + row.action, axis=1)
-
-df_action = df_action.rename({'user_id1': 'user_id'}, axis=1)
-
-print(df_action [['user_id','user_pool']])
-
-conn.commit()
-cur.close()
-conn.close()
+        self.insert_action_column_based_on_txn_type(df_other_txn)
+        self.add_pool_amount_to_user_pool(df_user_pool, df_other_txn)

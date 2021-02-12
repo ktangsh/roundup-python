@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "results": {
+    "creditCardTransactions": [
+      {
+        "maskedCardNumber": "XXXX-XXXX-XXXX-2532",
+        "creditCardType": "B",
+        "creditCardTransactionDetail": [
+          {
+            "transactionDate": "2018-04-26",
+            "transactionDescription": "ROXXXXX-TRAINING SINGAPORE",
+            "transactionAmount": 5000,
+            "postingDate": "2018-04-26",
+            "currencyCode": "XXX",
+            "foreignCurrencyAmount": 0,
+            "merchantCategoryCode": "XX11",
+            "retailTransactionCode": "5"
+          },
+          {
+            "transactionDate": "2018-04-25",
+            "transactionDescription": "PRXXXXX SINGAPORE",
+            "transactionAmount": 2000,
+            "postingDate": "2018-04-25",
+            "currencyCode": "XXX",
+            "foreignCurrencyAmount": 0,
+            "merchantCategoryCode": "XX11",
+            "retailTransactionCode": "5"
+          },
+          {
+            "transactionDate": "2018-04-25",
+            "transactionDescription": "ROXXXXX-TRAINING SINGAPORE",
+            "transactionAmount": 50,
+            "postingDate": "2018-04-25",
+            "currencyCode": "XXX",
+            "foreignCurrencyAmount": 0,
+            "merchantCategoryCode": "XX75",
+            "retailTransactionCode": "5"
+          }
+        ]
+      }
+    ]
+  },
+  "disclaimer": "The data returned are indicative and are subjected to changes without prior notice. Please use the data at your own discretion and risk."
+}

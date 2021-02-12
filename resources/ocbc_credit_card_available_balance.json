@@ -1,0 +1,31 @@
+{
+  "Success": true,
+  "Results": {
+    "Name": "JOHN DOE",
+    "CardType": "visa",
+    "CardDesc": "OCBC 360",
+    "Status": "Active",
+    "ExpiryDate": "03/05/2022",
+    "CardLimit": 6000,
+    "AvailableBalance": 4750,
+    "AmountDue": 1005,
+    "UnbilledAmount": 245,
+    "BlockMode": "N",
+    "MonitorMode": "N",
+    "AccountHistory": [
+      {
+        "Month": "February",
+        "LastStatmentBalance": 1015,
+        "AmountPaid": 1015,
+        "AmountDue": 0
+      },
+      {
+        "Month": "January",
+        "LastStatmentBalance": 950,
+        "AmountPaid": 950,
+        "AmountDue": 0
+      }
+    ]
+  },
+  "Disclaimer": "The data returned are indicative and are subjected to changes without prior notice.Please use the data at your own discretion and risk."
+}

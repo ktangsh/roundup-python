@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "results": {
+    "creditCardTransactions": {
+      "creditCardTransactionDetail": [
+        {
+          "transactionType": "C",
+          "retailTransactionCode": "5",
+          "transactionAmount": 5000,
+          "merchantCategoryCode": "XX11",
+          "transactionDescription": "ROXXXXX-TRAINING SINGAPORE",
+          "foreignCurrencyAmount": 0,
+          "postingDate": "2018-04-26",
+          "transactionDate": "26-04-2018",
+          "currencyCode": "XXX"
+        },
+        {
+          "transactionType": "C",
+          "retailTransactionCode": "5",
+          "transactionAmount": 2000,
+          "merchantCategoryCode": "XX11",
+          "transactionDescription": "PRXXXXX SINGAPORE",
+          "foreignCurrencyAmount": 0,
+          "postingDate": "2018-04-25",
+          "transactionDate": "25-04-2018",
+          "currencyCode": "XXX"
+        },
+        {
+          "transactionType": "D",
+          "retailTransactionCode": "5",
+          "transactionAmount": 50,
+          "merchantCategoryCode": "XX75",
+          "transactionDescription": "ROXXXXX-TRAINING SINGAPORE",
+          "foreignCurrencyAmount": 0,
+          "postingDate": "2018-04-25",
+          "transactionDate": "25-04-2018",
+          "currencyCode": "XXX"
+        }
+      ],
+      "cardId": "72ca9605-d6df-43e6-9c4e-e16321b81eb9",
+      "creditCardType": "B",
+      "maskedCardNumber": ""
+    }
+  },
+  "disclaimer": "The data returned are indicative and are subjected to changes without prior notice. Please use the data at your own discretion and risk."
+}
