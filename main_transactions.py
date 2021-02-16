@@ -1,5 +1,5 @@
 from roundup.main_roundup_transactions import MainTransactions
-from roundup.other_transactions import OtherTransactions
+from roundup.other_roundup_transactions import OtherTransactions
 
 if __name__ == '__main__':
 
