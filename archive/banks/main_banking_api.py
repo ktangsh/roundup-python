@@ -1,4 +1,4 @@
-from roundup.banks.dbs_transactions import DBSCustomerDetails
+from roundup.archive.banks.dbs_transactions import DBSCustomerDetails
 
 if __name__ == '__main__':
     dbs_customer = DBSCustomerDetails()

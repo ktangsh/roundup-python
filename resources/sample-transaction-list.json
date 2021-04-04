@@ -1,0 +1,53 @@
+{
+    "data": [
+        {
+            "id": "434815948449384822",
+            "account_id": "434815943785318765",
+            "duplicated": false,
+            "mode": "transfer",
+            "status": "posted",
+            "made_on": "2021-03-08",
+            "amount": 55.0,
+            "currency_code": "USD",
+            "description": "Sample transfer credit card transaction for 2021-03-08",
+            "category": "transfer",
+            "extra": {
+                "posting_date": "2021-03-09",
+                "account_number": "**** 1285",
+                "closing_balance": -1973.1,
+                "opening_balance": -2028.1,
+                "transfer_account_name": "Oauth account 1",
+                "account_balance_snapshot": -2018.1,
+                "categorization_confidence": 1
+            },
+            "created_at": "2021-03-10T10:47:56Z",
+            "updated_at": "2021-03-10T10:47:56Z"
+        },
+        {
+            "id": "434815948449384823",
+            "account_id": "434815943785318765",
+            "duplicated": false,
+            "mode": "normal",
+            "status": "posted",
+            "made_on": "2021-03-09",
+            "amount": -35.0,
+            "currency_code": "USD",
+            "description": "Sample credit card transaction for 2021-03-09",
+            "category": "fees_and_charges",
+            "extra": {
+                "posting_date": "2021-03-10",
+                "account_number": "**** 1285",
+                "closing_balance": -2008.1,
+                "opening_balance": -1973.1,
+                "account_balance_snapshot": -2018.1,
+                "categorization_confidence": 0.73
+            },
+            "created_at": "2021-03-10T10:47:56Z",
+            "updated_at": "2021-03-10T10:47:56Z"
+        }
+    ],
+    "meta": {
+        "next_id": null,
+        "next_page": null
+    }
+}

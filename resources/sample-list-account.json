@@ -1,0 +1,90 @@
+{
+    "data": [
+        {
+            "id": "434815943407831402",
+            "connection_id": "434815764780812615",
+            "name": "Oauth account 1",
+            "nature": "card",
+            "balance": 2011.3,
+            "currency_code": "EUR",
+            "extra": {
+                "iban": "DE02100110012612441123",
+                "client_name": "Fake name",
+                "transactions_count": {
+                    "posted": 2,
+                    "pending": 0
+                },
+                "last_posted_transaction_id": "434815947669244272"
+            },
+            "created_at": "2021-03-10T10:47:56Z",
+            "updated_at": "2021-03-10T10:47:56Z"
+        },
+        {
+            "id": "434815943567214955",
+            "connection_id": "434815764780812615",
+            "name": "Oauth account 2",
+            "nature": "account",
+            "balance": 2018.1,
+            "currency_code": "USD",
+            "extra": {
+                "iban": "DE72100110012612441124",
+                "transactions_count": {
+                    "posted": 3,
+                    "pending": 0
+                },
+                "last_posted_transaction_id": "434815948004788595"
+            },
+            "created_at": "2021-03-10T10:47:56Z",
+            "updated_at": "2021-03-10T10:47:56Z"
+        },
+        {
+            "id": "434815943667878252",
+            "connection_id": "434815764780812615",
+            "name": "Oauth BTC account 3",
+            "nature": "account",
+            "balance": 0.020181,
+            "currency_code": "BTC",
+            "extra": {
+                "transactions_count": {
+                    "posted": 2,
+                    "pending": 0
+                },
+                "last_posted_transaction_id": "434815948222892405"
+            },
+            "created_at": "2021-03-10T10:47:56Z",
+            "updated_at": "2021-03-10T10:47:56Z"
+        },
+        {
+            "id": "434815943785318765",
+            "connection_id": "434815764780812615",
+            "name": "Oauth Master Card 5325 **** **** 1285",
+            "nature": "credit_card",
+            "balance": -2018.1,
+            "currency_code": "USD",
+            "extra": {
+                "status": "active",
+                "card_type": "master_card",
+                "client_name": "Fake name",
+                "expiry_date": "2023-03-01",
+                "account_name": "**** 1285 MasterCard",
+                "credit_limit": 10000.0,
+                "blocked_amount": 10.0,
+                "closing_balance": -1009.05,
+                "available_amount": 7971.9,
+                "next_payment_date": "2021-03-30",
+                "transactions_count": {
+                    "posted": 2,
+                    "pending": 1
+                },
+                "next_payment_amount": 134.54,
+                "last_posted_transaction_id": "434815948449384823"
+            },
+            "created_at": "2021-03-10T10:47:56Z",
+            "updated_at": "2021-03-10T10:47:56Z"
+        }
+    ],
+    "meta": {
+        "next_id": null,
+        "next_page": null
+    }
+}
